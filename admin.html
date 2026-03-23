@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | EarthMovers</title>
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div>📞 +1 (800) 555-0199 &nbsp;&nbsp;|&nbsp;&nbsp; ✉️ support@earthmovers.com</div>
+  <div class="top-bar-links">
+    <!-- Auth.js will dynamically replace this -->
+    <a href="login.html">Sign In / Register</a>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">🚜 <span>EarthMovers</span> Dashboard</div>
+
+  <div class="search-container">
+    <form class="search-box-modern" action="products.html" method="GET">
+      <span class="search-icon">🔍</span>
+      <input type="text" name="q" placeholder="Search by machine, part number, or category..." required>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <nav class="nav-links">
+    <a href="index.html">Home Store</a>
+    <a href="products.html">Products</a>
+    <a href="#" class="active">Dashboard</a>
+  </nav>
+
+  <div class="menu-toggle" id="mobile-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+<div class="nav-bottom-line"></div>
+
+<!-- DASHBOARD LAYOUT -->
+<div class="admin-wrapper">
+  
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="admin-menu">
+      <a href="#" class="active">📊 Overview</a>
+      <a href="#">📦 Product Inventory</a>
+      <a href="#">🧾 Pending Quotes</a>
+      <a href="#">⚙️ Admin Settings</a>
+    </div>
+  </aside>
+
+  <!-- MAIN AREA -->
+  <main class="admin-main">
+    <h1>Welcome back, <span id="dashName">Admin</span>.</h1>
+    <p>Here is the status of your EarthMovers inventory today.</p>
+
+    <!-- METRICS -->
+    <div class="metrics">
+      <div class="metric-card">
+        <h3>Total Inquiries</h3>
+        <h2>1,248</h2>
+        <span class="trend up">▲ +12% this week</span>
+      </div>
+      <div class="metric-card">
+        <h3>Open Quotes</h3>
+        <h2>42</h2>
+        <span class="trend down">▼ -5% today</span>
+      </div>
+      <div class="metric-card">
+        <h3>Active Products</h3>
+        <h2>204</h2>
+        <span class="trend neutral">➖ Setup complete</span>
+      </div>
+    </div>
+
+    <!-- RECENT -->
+    <div class="recent-table">
+      <h3>Recent Quote Requests</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Items</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="quoteList">
+          <tr>
+            <td><strong>Caterpillar Logistics</strong></td>
+            <td>3 parts</td>
+            <td>Today, 10:45 AM</td>
+            <td><span class="status new">New</span></td>
+            <td><button class="action-btn">Review</button></td>
+          </tr>
+          <tr>
+            <td><strong>BuildMax Inc.</strong></td>
+            <td>1 part</td>
+            <td>Yesterday, 4:20 PM</td>
+            <td><span class="status pending">Pending</span></td>
+            <td><button class="action-btn">Review</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>&copy; 2026 EarthMovers | All Rights Reserved</p>
+</footer>
+<script>
+  if (localStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "login.html";
+  }
+  document.getElementById("dashName").textContent = localStorage.getItem("username") || "Admin";
+
+  // Mobile Menu Toggle
+  const menuToggle = document.getElementById('mobile-menu');
+  const navLinks = document.querySelector('.nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
+</body>
+</html>

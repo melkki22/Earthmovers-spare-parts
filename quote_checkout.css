@@ -1,0 +1,165 @@
+/* ================= QUOTE CHECKOUT ================= */
+
+.quote-wrapper {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.quote-wrapper h1 {
+  font-size: 36px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 10px 0;
+}
+.quote-wrapper > p {
+  color: #6b7280;
+  font-size: 16px;
+  margin: 0 0 30px 0;
+}
+
+.quote-container {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* LEFT */
+.quote-form-panel {
+  flex: 2;
+  background: white;
+  padding: 40px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.quote-form-panel h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  color: #111827;
+  border-bottom: 2px solid #f3f4f6;
+  padding-bottom: 15px;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+.form-row > input { flex: 1; }
+
+.quote-form-panel input[type="text"],
+.quote-form-panel input[type="email"],
+.quote-form-panel input[type="tel"],
+.quote-form-panel textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  color: #111827;
+  font-size: 15px;
+  transition: 0.2s;
+  outline: none;
+  font-family: inherit;
+}
+
+.quote-form-panel input:focus,
+.quote-form-panel textarea:focus {
+  border-color: #fbb034;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(251, 176, 52, 0.15);
+}
+
+.submit-quote-btn {
+  width: 100%;
+  padding: 16px;
+  background: #fbb034;
+  border: none;
+  color: #111827;
+  font-weight: 800;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.submit-quote-btn:hover {
+  background: #f59e0b;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(251, 176, 52, 0.3);
+}
+
+/* RIGHT: SUMMARY */
+.quote-summary-panel {
+  flex: 1;
+  background: #f9fafb;
+  padding: 30px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  position: sticky;
+  top: 150px;
+}
+
+.quote-summary-panel h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  color: #111827;
+}
+
+.quote-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.quote-list li {
+  display: flex;
+  gap: 15px;
+  background: white;
+  padding: 15px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.qi-img {
+  width: 60px;
+  height: 60px;
+  background: #f3f4f6;
+  border-radius: 4px;
+  padding: 4px;
+}
+.qi-img img { width: 100%; height: 100%; object-fit: contain; }
+
+.qi-details h4 { margin: 0 0 5px 0; font-size: 15px; color: #111827; }
+.qi-details p { margin: 0; font-size: 12px; color: #6b7280; text-transform: uppercase; font-weight: 600; }
+
+.quote-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px solid #e5e7eb;
+  padding-top: 20px;
+}
+
+/* --- RESPONSIVE CHECKOUT --- */
+@media (max-width: 900px) {
+  .quote-container { flex-direction: column; }
+  .quote-summary-panel { position: static; width: 100%; order: -1; }
+  .form-row { flex-direction: column; gap: 0; }
+}
+
+@media (max-width: 600px) {
+  .quote-wrapper h1 { font-size: 28px; }
+  .quote-form-panel { padding: 25px; }
+  .quote-summary-panel { padding: 20px; }
+  .qi-img { width: 50px; height: 50px; }
+  .qi-details h4 { font-size: 14px; }
+}

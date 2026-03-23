@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details | EarthMovers</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="product_details.css">
+  <link rel="stylesheet" href="toast.css">
+</head>
+<body>
+
+<div class="top-bar">
+  <div>📞 +1 (800) 555-0199 &nbsp;&nbsp;|&nbsp;&nbsp; ✉️ support@earthmovers.com</div>
+  <div class="top-bar-links">
+    <a href="login.html">Sign In / Register</a>
+  </div>
+</div>
+
+<header class="navbar">
+  <div class="logo">🚜 <span>EarthMovers</span></div>
+  <div class="search-container">
+    <form class="search-box-modern" action="products.html" method="GET">
+      <span class="search-icon">🔍</span>
+      <input type="text" name="q" placeholder="Search by machine, part number, or category..." required>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="products.html" class="active">Products</a>
+    <a href="admin.html">Dashboard</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="menu-toggle" id="mobile-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+<div class="nav-bottom-line"></div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="products.html">All Parts</a> &gt; 
+  <span id="bcCategory">Category</span> &gt; 
+  <strong id="bcTitle">Loading...</strong>
+</div>
+
+<!-- PRODUCT DETAILS CONTAINER -->
+<div class="pdp-container">
+  
+  <div class="pdp-gallery">
+    <div class="pdp-main-img">
+      <img id="pdpImg" src="image/bacgroundimg.jpg" alt="Product">
+    </div>
+  </div>
+
+  <div class="pdp-info">
+    <h1 id="pdpTitle">Product Title</h1>
+    <span id="pdpCategory" class="badge">Category</span>
+    
+    <div class="pdp-price-box">
+      <h2 id="pdpPrice">Request Quote for Price</h2>
+      <p class="availability">✅ In Stock - Ready to Ship</p>
+    </div>
+
+    <div class="pdp-desc">
+      <h3>Description</h3>
+      <p id="pdpDesc">Detailed product description goes here...</p>
+    </div>
+
+    <!-- SPECS TABLE -->
+    <div class="pdp-specs">
+      <h3>Technical Specifications</h3>
+      <table>
+        <tr>
+          <th>Part Number</th>
+          <td>OEM-90<span id="pdpId">1</span>-EM</td>
+        </tr>
+        <tr>
+          <th>Condition</th>
+          <td>Brand New Authentic</td>
+        </tr>
+        <tr>
+          <th>Warranty</th>
+          <td>12 Months Standard</td>
+        </tr>
+        <tr>
+          <th>Weight</th>
+          <td>Varies (Freight Shipping)</td>
+        </tr>
+      </table>
+    </div>
+
+    <button id="pdpAddToCart" class="primary-btn pdp-btn">Add to Inquiry</button>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <p>&copy; 2026 EarthMovers | All Rights Reserved</p>
+</footer>
+
+<script src="products.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const id = parseInt(urlParams.get('id') || 1);
+  const product = productsData.find(p => p.id === id);
+
+  if (!product) {
+    document.querySelector(".pdp-container").innerHTML = "<h2>Product Not Found</h2>";
+    return;
+  }
+
+  // Populate data
+  document.getElementById("bcCategory").textContent = product.category;
+  document.getElementById("bcTitle").textContent = product.title;
+  
+  document.getElementById("pdpTitle").textContent = product.title;
+  document.getElementById("pdpCategory").textContent = product.category;
+  document.getElementById("pdpDesc").textContent = product.description;
+  document.getElementById("pdpId").textContent = product.id;
+  document.getElementById("pdpImg").src = product.image;
+
+  // Render logic identically to products_logic.js modal logic
+  const btn = document.getElementById("pdpAddToCart");
+  const cart = JSON.parse(localStorage.getItem('inquiryCart')) || [];
+  const isLoggedIn = localStorage.getItem("loggedIn") === "true";
+
+  if (!isLoggedIn) {
+    btn.textContent = "Login to Add";
+  } else if (cart.includes(product.id)) {
+    btn.textContent = "Already in Inquiry";
+    btn.disabled = true;
+    btn.style.opacity = "0.5";
+  }
+
+  btn.addEventListener("click", () => {
+    if (!isLoggedIn) {
+      window.location.href = "login.html";
+      return;
+    }
+    if (!cart.includes(product.id)) {
+      cart.push(product.id);
+      localStorage.setItem('inquiryCart', JSON.stringify(cart));
+      btn.textContent = "Added ✓";
+      btn.disabled = true;
+      btn.style.opacity = "0.5";
+      if (typeof showToast === "function") showToast(product.title + " added to inquiry!");
+    }
+  });
+
+  // Mobile Menu Toggle
+  const menuToggle = document.getElementById('mobile-menu');
+  const navLinks = document.querySelector('.nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+});
+</script>
+<script src="toast.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

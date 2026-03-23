@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | EarthMovers</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div>📞 +1 (800) 555-0199 &nbsp;&nbsp;|&nbsp;&nbsp; ✉️ support@earthmovers.com</div>
+  <div class="top-bar-links">
+    <a href="contact.html">Help Center</a>
+    <a href="login.html">Sign In</a>
+    <a href="register.html">Register</a>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">🚜 <span>EarthMovers</span></div>
+
+  <div class="search-container">
+    <form class="search-box-modern" action="products.html" method="GET">
+      <span class="search-icon">🔍</span>
+      <input type="text" name="q" placeholder="Search by machine, part number, or category..." required>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="admin.html">Dashboard</a>
+    <a href="contact.html" class="active">Contact</a>
+  </nav>
+
+  <div class="menu-toggle" id="mobile-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<div class="nav-bottom-line"></div>
+
+<!-- CONTACT -->
+<section class="contact-page">
+
+  <h1>Contact Us</h1>
+
+  <div class="contact-container">
+
+    <!-- LEFT: FORM -->
+    <div class="contact-form">
+      <h2>Send Message</h2>
+
+      <form id="contactForm" onsubmit="submitForm(event)">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p id="formSuccess" style="color:#4caf50; display:none; margin-top:10px;">✅ Message sent successfully!</p>
+    </div>
+
+    <!-- RIGHT: INFO -->
+    <div class="contact-info">
+      <h2>Get in Touch</h2>
+
+      <p>📍 Location: Chennai, India</p>
+      <p>📞 Phone: +91 98765 43210</p>
+      <p>📧 Email: support@earthmovers.com</p>
+
+      <div class="contact-box-mini">
+        <h3>Working Hours</h3>
+        <p>Mon - Sat: 9 AM - 6 PM</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p>© 2026 EarthMovers | All Rights Reserved</p>
+</footer>
+
+</body>
+
+<script>
+function submitForm(e) {
+  e.preventDefault();
+  document.getElementById("formSuccess").style.display = "block";
+  document.getElementById("contactForm").reset();
+}
+
+// Mobile Menu Toggle
+const menuToggle = document.getElementById('mobile-menu');
+const navLinks = document.querySelector('.nav-links');
+
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+</script>
+<script src="toast.js"></script>
+<script src="auth.js"></script>
+</html>

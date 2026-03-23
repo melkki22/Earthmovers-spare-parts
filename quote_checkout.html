@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Quote | EarthMovers</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="quote_checkout.css">
+</head>
+<body>
+
+<div class="top-bar">
+  <div>📞 +1 (800) 555-0199 &nbsp;&nbsp;|&nbsp;&nbsp; ✉️ support@earthmovers.com</div>
+  <div class="top-bar-links">
+    <a href="login.html">Sign In / Register</a>
+  </div>
+</div>
+
+<header class="navbar">
+  <div class="logo">🚜 <span>EarthMovers</span> Checkout</div>
+  <div class="search-container">
+    <form class="search-box-modern" action="products.html" method="GET">
+      <span class="search-icon">🔍</span>
+      <input type="text" name="q" placeholder="Search by machine, part number, or category..." required>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="admin.html">Dashboard</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="menu-toggle" id="mobile-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+<div class="nav-bottom-line"></div>
+
+<div class="quote-wrapper">
+  <h1>Submit Quote Inquiry</h1>
+  <p>Please review your items and provide your company procurement details.</p>
+
+  <div class="quote-container">
+    <!-- LEFT -->
+    <div class="quote-form-panel">
+      <h2>Company Details</h2>
+      <form id="quoteForm" onsubmit="submitQuote(event)">
+        <div class="form-row">
+          <input type="text" id="companyName" placeholder="Company Name" required>
+          <input type="text" id="contactName" placeholder="Contact Name" required>
+        </div>
+        <div class="form-row">
+          <input type="email" id="email" placeholder="Business Email" required>
+          <input type="tel" id="phone" placeholder="Phone Number" required>
+        </div>
+        <input type="text" id="address" placeholder="Shipping Address / Location" required>
+        
+        <h2>Project Requirements</h2>
+        <textarea id="notes" placeholder="Any special requirements, machine VINs, or timeline details?" rows="4"></textarea>
+        
+        <label style="display:flex; align-items:center; gap:10px; margin-bottom:20px; font-weight:600; color:#4b5563; font-size:14px;">
+          <input type="checkbox" id="urgent"> Mark as Urgent (Machine Down)
+        </label>
+        
+        <button type="submit" class="submit-quote-btn">Submit Formal Request</button>
+      </form>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="quote-summary-panel">
+      <h2>Inquiry Summary</h2>
+      <ul id="quoteItemList" class="quote-list">
+        <!-- Rendered by JS -->
+      </ul>
+      <div class="quote-total">
+        <span style="color:#6b7280; font-weight:600;">Total Parts:</span>
+        <span id="totalItems" style="font-size:24px; font-weight:800; color:#111827;">0</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>&copy; 2026 EarthMovers | All Rights Reserved</p>
+</footer>
+
+<script src="products.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // Populate items
+  const cart = JSON.parse(localStorage.getItem('inquiryCart')) || [];
+  const list = document.getElementById("quoteItemList");
+  
+  if (cart.length === 0) {
+    list.innerHTML = "<p>Your inquiry cart is empty.</p>";
+    return;
+  }
+
+  document.getElementById("totalItems").textContent = cart.length;
+
+  cart.forEach(id => {
+    const product = productsData.find(p => p.id === id);
+    if (product) {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <div class="qi-img"><img src="${product.image}" alt=""></div>
+        <div class="qi-details">
+          <h4>${product.title}</h4>
+          <p>Category: ${product.category}</p>
+        </div>
+      `;
+      list.appendChild(li);
+    }
+  });
+
+  // Prefill details if logged in
+  if (localStorage.getItem("loggedIn") === "true") {
+    document.getElementById("contactName").value = localStorage.getItem("username") || "";
+  }
+
+  // Mobile Menu Toggle
+  const menuToggle = document.getElementById('mobile-menu');
+  const navLinks = document.querySelector('.nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+});
+
+function submitQuote(e) {
+  e.preventDefault();
+  const cart = JSON.parse(localStorage.getItem('inquiryCart')) || [];
+  if (cart.length === 0) {
+    if (typeof showToast === 'function') showToast("Cart is empty!", "error");
+    else alert("Your cart is empty.");
+    return;
+  }
+
+  if (typeof showToast === 'function') showToast("Formal Quote Request Submitted Successfully!");
+  else alert("Formal Quote Request Submitted Successfully!");
+
+  localStorage.removeItem("inquiryCart");
+  
+  setTimeout(() => {
+    window.location.href = "admin.html";
+  }, 2000);
+}
+</script>
+<script src="toast.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

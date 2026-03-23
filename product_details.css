@@ -1,0 +1,158 @@
+/* ================= PRODUCT DETAILS PAGE ================= */
+
+.breadcrumb {
+  max-width: 1200px;
+  margin: 20px auto 0;
+  padding: 0 20px;
+  font-size: 14px;
+  color: #6b7280;
+}
+.breadcrumb a {
+  color: #b45309;
+  text-decoration: none;
+  font-weight: 600;
+}
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.pdp-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 20px auto 60px;
+  padding: 0 20px;
+  gap: 50px;
+}
+
+/* LEFT: GALLERY */
+.pdp-gallery {
+  flex: 1;
+  max-width: 500px;
+}
+.pdp-main-img {
+  width: 100%;
+  aspect-ratio: 1;
+  background: white;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+}
+.pdp-main-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* RIGHT: INFO */
+.pdp-info {
+  flex: 1;
+}
+
+.pdp-info h1 {
+  font-size: 32px;
+  font-weight: 800;
+  color: #111827;
+  margin: 0 0 10px 0;
+}
+
+.badge {
+  display: inline-block;
+  background: #fef3c7;
+  color: #b45309;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  margin-bottom: 25px;
+  border: 1px solid #fde68a;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.pdp-price-box {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 30px;
+}
+.pdp-price-box h2 {
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  color: #b45309;
+  font-weight: 800;
+}
+.pdp-price-box .availability {
+  margin: 0;
+  color: #059669;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.pdp-desc h3 {
+  font-size: 18px;
+  color: #111827;
+  margin: 0 0 10px 0;
+}
+.pdp-desc p {
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0 0 30px 0;
+  font-size: 15px;
+}
+
+/* SPECS TABLE */
+.pdp-specs {
+  margin-bottom: 30px;
+}
+.pdp-specs h3 {
+  font-size: 18px;
+  color: #111827;
+  margin: 0 0 10px 0;
+}
+.pdp-specs table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.pdp-specs th, .pdp-specs td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+.pdp-specs th {
+  background: #f9fafb;
+  color: #4b5563;
+  width: 40%;
+  font-weight: 600;
+}
+.pdp-specs td {
+  background: white;
+  color: #111827;
+}
+
+.pdp-btn {
+  width: 100%;
+  padding: 18px;
+  font-size: 18px;
+}
+
+/* --- RESPONSIVE PDP --- */
+@media (max-width: 900px) {
+  .pdp-container { flex-direction: column; gap: 30px; }
+  .pdp-gallery { max-width: 100%; }
+}
+
+@media (max-width: 600px) {
+  .pdp-container { padding: 0 15px; margin-bottom: 40px; }
+  .pdp-main-img { padding: 10px; }
+  .pdp-info h1 { font-size: 24px; }
+  .pdp-price-box { padding: 15px; }
+  .pdp-price-box h2 { font-size: 20px; }
+  .pdp-specs table th { width: 45%; padding: 10px; font-size: 13px; }
+  .pdp-specs table td { padding: 10px; font-size: 13px; }
+  .pdp-btn { padding: 14px; font-size: 16px; }
+}

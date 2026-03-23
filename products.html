@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products | EarthMovers</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="products.css">
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div>📞 +1 (800) 555-0199 &nbsp;&nbsp;|&nbsp;&nbsp; ✉️ support@earthmovers.com</div>
+  <div class="top-bar-links">
+    <a href="contact.html">Help Center</a>
+    <a href="login.html">Sign In</a>
+    <a href="register.html">Register</a>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="logo">🚜 <span>EarthMovers</span></div>
+
+  <div class="search-container">
+    <form class="search-box-modern" action="products.html" method="GET">
+      <span class="search-icon">🔍</span>
+      <input type="text" name="q" placeholder="Search by machine, part number, or category..." required>
+      <button type="submit">Search</button>
+    </form>
+  </div>
+
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="products.html" class="active">Products</a>
+    <a href="admin.html">Dashboard</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="menu-toggle" id="mobile-menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<div class="nav-bottom-line"></div>
+
+<!-- PAGE -->
+<section class="products-page">
+  <h1>Spare Parts Catalog</h1>
+
+  <!-- CATEGORY FILTERS -->
+  <div class="category-filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="undercarriage">Undercarriage</button>
+    <button class="filter-btn" data-filter="hydraulics">Hydraulics</button>
+    <button class="filter-btn" data-filter="engine">Engine</button>
+    <button class="filter-btn" data-filter="drivetrain">Drivetrain</button>
+    <button class="filter-btn" data-filter="attachments">Attachments</button>
+  </div>
+
+  <div class="layout">
+    <div class="product-grid" id="productGrid">
+      <!-- Products injected dynamically -->
+    </div>
+  </div>
+
+</section>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal-content glass-effect">
+    <span class="close-modal" id="closeModal">&times;</span>
+    <div class="modal-body">
+      <div class="modal-img-container">
+        <img id="modalImg" src="image/bacgroundimg.jpg" alt="Product Image">
+      </div>
+      <div class="modal-details">
+        <h2 id="modalTitle">Product Title</h2>
+        <span id="modalCategory" class="badge">Category</span>
+        <p id="modalDesc">Product description goes here...</p>
+        <h3 class="price">Ask Price</h3>
+        <button id="addToCartBtn" class="primary-btn">Add to Inquiry</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FLOATING CART WIDGET -->
+<div class="floating-cart glass-effect" id="floatingCart">
+  <span>🛒</span>
+  <span id="cartCount" class="cart-badge">0</span>
+</div>
+
+<!-- INQUIRY CART MODAL -->
+<div class="modal-overlay" id="cartModal">
+  <div class="modal-content glass-effect cart-content">
+    <span class="close-modal" id="closeCartModal">&times;</span>
+    <h2>Your Inquiry List</h2>
+    <ul id="cartItemList" class="cart-list">
+      <!-- Items dynamically added here -->
+    </ul>
+    <button id="requestQuoteBtn" class="primary-btn full-width">Request Quote</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <p>© 2026 EarthMovers | All Rights Reserved</p>
+</footer>
+
+<script>
+  // Mobile Menu Toggle
+  const menuToggle = document.getElementById('mobile-menu');
+  const navLinks = document.querySelector('.nav-links');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
+<script src="products.js"></script>
+<script src="products_logic.js"></script>
+<script src="toast.js"></script>
+<script src="auth.js"></script>
+
+</body>
+</html>
